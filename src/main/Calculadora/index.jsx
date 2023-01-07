@@ -9,6 +9,7 @@ export default function Calculadora() {
   const [numeroAntigo, setNumeroAntigo] = useState(0);
   const [operador, setOperador] = useState();
   const [resultado, setResultado] = useState(0);
+  const [ac, setAc] = useState(true)
 
   const limparDisplay = () => setNumeroDisplay(0);
   const inserirDigito = (digito) => {
@@ -24,9 +25,11 @@ export default function Calculadora() {
     setNumeroDisplay(0);
     setOperador(operadorInput);
     setNumeroAntigo(numeroDisplay);
+    setAc(false)
   };
 
   const calcular = () => {
+    setAc(true)
     if(operador == "/"){
       setNumeroDisplay(Number(numeroAntigo) / Number(numeroDisplay))
     }if(operador == "*"){
@@ -43,7 +46,7 @@ export default function Calculadora() {
   return (
     <div className="calculadora">
       <Display valor={numeroDisplay} />
-      <Botao label="AC" triple click={() => limparDisplay()} />
+      <Botao label={ac ? "AC" : "C"} triple click={() => limparDisplay()} />
       <Botao label="/" operation click={operacao} />
       <Botao label="7" click={inserirDigito} />
       <Botao label="8" click={inserirDigito} />
