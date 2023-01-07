@@ -8,10 +8,15 @@ export default function Calculadora() {
   const [numeroDisplay, setNumeroDisplay] = useState(0);
   const [numeroAntigo, setNumeroAntigo] = useState(0);
   const [operador, setOperador] = useState();
-  const [resultado, setResultado] = useState(0);
   const [ac, setAc] = useState(true)
 
-  const limparDisplay = () => setNumeroDisplay(0);
+  const limparDisplay = () => {
+  if(ac == true){
+    setNumeroAntigo(0)
+    setNumeroDisplay(0)
+    setOperador("")
+  }
+  };
   const inserirDigito = (digito) => {
     if (numeroDisplay === 0) {
       setNumeroDisplay(parseFloat(digito));
